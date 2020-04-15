@@ -15,11 +15,7 @@
 
    npm install 
 
-3) Installing  Sequelize CLI:
-
-   npm install --save-dev sequelize-cli
-
-4) Configuration
+3) Configuration
 
    Before continuing further we will need to tell the CLI how to connect to the database. To do that let's open default config file config/config.json. It looks something like this:
 
@@ -47,13 +43,13 @@
     }
   }
 
-5) Running Migrations
+4) Running Migrations
 
    npx sequelize-cli db:migrate
 
-6) Run this command to run application
+5) Run this command to run application
 
    node app.js
    
- 7) Hit http://localhost:4000/ to visit home page.  
+ 6) Hit http://localhost:4000/ to visit home page.  
    
