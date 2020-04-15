@@ -124,7 +124,7 @@ exports.retryUser = async (params) => {
       from: config.from,
       to: userData.email,
       subject: "OTP Authentication Demo",
-      text: "OTP for email varification" + randomOTP,
+      text: "OTP for email varification " + randomOTP,
     };
 
     await transporter.sendMail(mailOptions);

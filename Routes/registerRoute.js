@@ -43,9 +43,8 @@ router.post(
     }
     registerUser(req.body)
       .then((data) => {
-        if (data.status == 200) {
           res.status(data.status).json(data.data);
-        }
+        
       })
       .catch((err) => {
         res.status(err.status).json(err.data);
