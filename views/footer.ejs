@@ -1,0 +1,42 @@
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="/js/pnotify.custom.min.js"></script>
+<script src="/js/waitMe.min.js"></script>
+<script src="/js/developer.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // setup ajax
+        $.ajaxSetup({
+            dataType: 'json',
+            error: function(error) {
+                if (error.status == 0 || error.readyState == 0) {
+                    return;
+                } else if (error.status == 422) {
+                    errors = error.responseJSON;
+                    $.each(errors.errors, function(key, value) {
+                        console.log(value)
+                        if(!$('span.error.' + value.param).is(":visible")){
+                            $('span.error.' + value.param).empty().text(value.msg).fadeIn().css('display', 'block');
+                        }
+                    });
+                } else if (error.status == 400) {
+                    errors = error.responseJSON;
+                    if (errors.hasOwnProperty('msg')) {
+                        show_FlashMessage(errors.msg, 'error');
+                    } else {
+                        show_FlashMessage('Something went wrong!', 'error');
+                    }
+                } else {
+                    show_FlashMessage('Something went wrong!', 'error');
+                }
+                stopLoader();
+            }
+        });
+    });
+    </script>
+</body>
+</html>

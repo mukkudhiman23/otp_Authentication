@@ -1,0 +1,62 @@
+
+<%- include('header'); -%>
+    <div class="container">
+      <div class="card mt-5">
+        <h1>Email Verification</h1>
+        <br />
+        <form action="/register" method="POST" id="register">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              placeholder="enter username"
+            />
+            <span class="username error text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="enter email"
+            />
+            <span class="email error text-danger"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="sendOTP">Send OTP</button>
+        </form>
+      </div>
+    </div>
+    <%- include('footer'); -%>
+
+    <script>
+
+      // Submit the form on the button click
+
+      $(document).ready(function (){
+        $(document).on('click', '#sendOTP', function(e) {
+            e.preventDefault();
+            startLoader();
+            $('span.error').empty().hide();
+            // Send the Ajax request
+            $.ajax({
+                url: $('#register').attr('action'),
+                type: 'post',
+                data: $('#register').serialize(),
+                success: function(data) {
+                    show_FlashMessage(data.msg);
+                    window.location.href = data.redirectTo;
+                }
+            });
+        });
+      });
+     
+    </script>
+    </body>
+    </html>

@@ -1,0 +1,73 @@
+
+<%- include('header'); -%>
+    <div class="container">
+      <div class="card mt-4">
+        <h1>Email Verification</h1>
+        <br />
+        <form action="/verify" method="POST" id="verifyForm">
+          <div class="form-group">
+            <label for="otp">OTP</label>
+            <input type="hidden" name="user_id" value="<%=user_id%>"/>
+            <input
+              type="number"
+              class="form-control"
+              id="otp"
+              name="otp"
+              placeholder="enter otp"
+            />
+            <span class="otp text-danger"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" name="verify" id="verify">
+            Verify OTP
+          </button>
+          <button type="button" data-href="/retry/<%=user_id%>" class="btn btn-primary" id="resendOTP">Resend OTP</button>
+     
+        </form>
+    
+        
+      </div>
+    </div>
+
+
+    <%- include('footer'); -%>
+
+
+    <script>
+
+      // Submit the form on the button click
+      $(document).on('click', '#verify', function(e) {
+            e.preventDefault();
+            startLoader();
+            $('span.error').empty().hide();
+            // Send the Ajax request
+            $.ajax({
+                url: $('#verifyForm').attr('action'),
+                type: 'post',
+                data: $('#verifyForm').serialize(),
+                success: function(data) {
+                    show_FlashMessage(data.msg);
+                    window.location.href = data.redirectTo;
+                }
+            });
+        });
+         // Submit the form on the button click
+      $(document).on('click', '#resendOTP', function(e) {
+            e.preventDefault();
+            startLoader();
+       
+          
+            // Send the Ajax request
+            $.ajax({
+                url: $(this).attr('data-href'),
+                type: 'post',
+                
+                
+                success: function(data) {
+                    show_FlashMessage(data.msg);
+                   
+                    stopLoader();
+                }
+            });
+        });
+    </script> 
