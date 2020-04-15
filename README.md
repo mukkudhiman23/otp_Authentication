@@ -43,13 +43,16 @@
     }
   }
 
-4) Running Migrations
+
+4) Configure mail setting(username and password) in common/mailConfig.js
+
+5) Running Migrations
 
    npx sequelize-cli db:migrate
 
-5) Run this command to run application
+6) Run this command to run application
 
    node app.js
    
- 6) Hit http://localhost:4000/ to visit home page.  
+ 7) Hit http://localhost:4000/ to visit home page.  
    
