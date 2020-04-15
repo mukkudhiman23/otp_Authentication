@@ -1,6 +1,6 @@
 # otp_Authentication
 
-# APPLICATION DEPENDENCIES
+# Application Dependencies
 .Node js
 .npm
 .Sequelize
