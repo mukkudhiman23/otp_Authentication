@@ -1,6 +1,6 @@
 const config = {
   username: "demo@gmail.com",
   password: "password",
-  from: "demod@gmail.com",
+  from: "demo@gmail.com",
 };
 module.exports = config;
